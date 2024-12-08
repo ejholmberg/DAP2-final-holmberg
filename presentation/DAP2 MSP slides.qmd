@@ -1,0 +1,132 @@
+---
+title: "Medicare Savings Programs Expansion in Massachusetts"
+author: "Eric Holmberg"
+format: 
+  revealjs:
+    incremental: true
+editor: visual
+---
+
+## The Health Care Cliff
+
+::: r-stack
+::: fragment
+![](outside_statehouse.jpg)
+:::
+
+::: fragment
+![](gowns.jpg)
+:::
+
+::: fragment
+![](inside_statehouse.jpg)
+:::
+
+::: fragment
+![](blueshirtzoom.png)
+:::
+
+::: fragment
+![](edna_baker.jpg)
+:::
+:::
+
+------------------------------------------------------------------------
+
+![](medicare_costs_masshealth.png)
+
+. . .
+
+Seniors have been left behind by health care reforms.
+
+## Medicare Savings Programs (MSP)
+
+-   Three versions: all cover Medicare Part B premium and enroll into Part D Extra Help
+
+    -   \~\$2,000/yr saved on premiums
+
+    -   \~\$5,300 saved on prescriptions
+
+-   Eligibility set by states, costs shared with feds
+
+    -   Income and asset tests
+
+    -   MA raised eligibility in 2020 and again in 2023, to individuals earning \$34,000/yr regardless of assets
+
+## Research Question & Motivation
+
+-   Did expanded eligibility for MSP lead to higher enrollment? If so, where?
+
+-   Seniors and legislators are concerned with dollars and cents. Are benefits reaching people, where are they, how much has it cost?
+
+## Data Sources
+
+::: nonincremental
+-   CMS Medicare-Medicaid Coordination Office[^1]
+-   MassGIS[^2]
+-   US Census, 1-Year and 5-Year American Community Survey[^3]
+:::
+
+[^1]: <https://www.cms.gov/data-research/research/statistical-resources-dually-eligible-beneficiaries/mmco-statistical-analytic-reports>
+
+[^2]: <https://www.mass.gov/info-details/massgis-data-counties>
+
+[^3]: Accessed via API using tidycensus package (<https://walker-data.com/tidycensus>)
+
+## Methods
+
+-   Data joins, cleaning, and calculations
+
+::: fragment
+``` {.r code-line-numbers="1|3-8"}
+# Creating stats / 100,000 people (borrowed this metric from AARP)
+data_full <- data_full |>
+  mutate(total_msp_per_100k = ((total_msp / beneficiaries)*100000),
+      total_qmb_per_100k = ((qmb_only+qmb_plus_full_medicaid_benefits)
+      /beneficiaries)*100000,
+      total_slmb_per_100k = ((slmb_only+slmb_plus_full_medicaid_benefits)
+      /beneficiaries)*100000,
+      total_qi_per_100k = (qi / beneficiaries)*100000,
+      date = as_date(paste(year, month, "30", sep = "-"), "%Y-%m-%d"))
+```
+:::
+
+-   Visualization
+
+-   Shiny apps
+
+-   Text analysis
+
+-   Regression model
+
+## Findings
+
+![](plot1_enrollment_plot.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+![](plot2_enrollment_map.png){fig-align="center"}
+
+## Shiny app
+
+---
+
+```{=html}
+<table style="text-align:center">
+<tr><td style="text-align:left"></td><td>Total MSP Enrollment Rate</td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Nonwhite (% of population)</td><td>683.446<sup>***</sup> (36.856)</td></tr>
+<tr><td style="text-align:left">Population (100k)</td><td>-118.382 (102.994)</td></tr>
+<tr><td style="text-align:left">2020 policy change</td><td>-2,083.593<sup>***</sup> (760.052)</td></tr>
+<tr><td style="text-align:left">Constant</td><td>9,004.300<sup>***</sup> (847.800)</td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>470</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.489</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.486</td></tr>
+<tr><td style="text-align:left">Residual Std. Error</td><td>8,041.677 (df = 466)</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>148.577<sup>***</sup> (df = 3; 466)</td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+```
+
+::: center
+## Thank you!
+:::
