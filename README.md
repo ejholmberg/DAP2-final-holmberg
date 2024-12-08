@@ -28,7 +28,7 @@ I am also interested in learning more about how researchers, policymakers, and o
     * If using _tidycensus_ package to access US Census API, proceed with lines 102-168.
        * In line 102, insert your own Census API key if using tidycensus package for the first time.
        * If not using API, access archived Census data in `data` folder by editing `directory` in line 191 and running lines 191-193 before proceeding to lines 178-188.
-    * Line 188 produces the processed dataset, `data_full.RData` which can also be downloaded directly from the `data` folder without running any of the code in `data.R`.
+    * Line 188 produces the processed dataset, `data_full.RData` which can also be downloaded from [Google Drive here](https://drive.google.com/file/d/1C4G0NUO2CfAASyI3VD6w92veP3LbY5EO/view?usp=drive_link).
  * Once `data_full.Rdata` is on your machine, proceed to __`staticplot.R`__ or __`shinyapp.R`__ to create figures and tools.
     * `staticplot.R` generates `plot1_enrollment_time.png` and `plot2_enrollment_map.png` which can be found in the `images` folder.
          * In line 5, edit `directory` to local directory containing `data_full.Rdata`.
