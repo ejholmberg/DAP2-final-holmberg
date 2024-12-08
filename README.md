@@ -5,7 +5,7 @@
 ### Repository Contents
 *  _R files_: `data.R`, `staticplot.R`, `shinyapp.R`, `model.R`, and `textprocess.R`
 *  _Folders_: `data`, `images`, `presentation`, `Supporting_documents_research`
-    * `data` contains the unmodified data manipulated in `data.R`, text data from Congress.gov (`MSP_congress.csv`), as well as the processed dataset `data_full.Rdata` (with data from CMS, MassGIS, and the US Census Bureau).
+    * `data` contains the unmodified data manipulated in `data.R`, text data from Congress.gov (`MSP_congress.csv`), as well as a [link to the processed dataset](https://drive.google.com/file/d/1C4G0NUO2CfAASyI3VD6w92veP3LbY5EO/view?usp=drive_link) `data_full.Rdata` (with data from CMS, MassGIS, and the US Census Bureau).
     * `images` contains plot and map outputs from `staticplot.R` as well as a wordcloud output from `textprocess.R`.
     * `presentation` contains the Quarto slide materials from my in-class presentation.
     * `Supporting_documents_research` includes three publications I leaned on for context and potential research methods, from AARP, MassHealth (the Massachusetts Medicaid program), and [Gina Li](https://sites.google.com/view/ginali).
